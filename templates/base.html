@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <!-- Font-Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar Section-->
+    <nav>
+      <div class="logo">
+        <a href="/">
+          <img src="{% static 'media/logo.png' %}" alt="logo" />
+        </a>
+      </div>
+      <ul class="navbars">
+        <li class="item">
+          <a href="/">Home</a>
+        </li>
+        <li class="item">
+          <a href="/">Dashboard</a>
+        </li>
+        <li class="item">
+          <a href="/">Login</a>
+        </li>
+        <li class="item">
+          <a href="/">Register</a>
+        </li>
+        <li class="item">
+          <a href="/">Logout</a>
+        </li>
+        <li class="item">
+          <a href="/"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <!--Hero Section-->
+    <section class="content">
+      <div class="content-container">
+        <div class="content-area">
+          <h3 class="heading">Welcome to <em>Tour Library</em></h3>
+          <p class="sub-heading">
+            Here you'll find all of your favourite <em>Books</em>
+          </p>
+        </div>
+        <div class="popular-books">
+          <h3 class="popular-heading">Popular Books</h3>
+          <div class="top-books">
+            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
+            <h4>Name: Harry Potter</h4>
+            <p>Author: James</p>
+          </div>
+          <div class="top-books">
+            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
+            <h4>Name: Harry Potter</h4>
+            <p>Author: James</p>
+          </div>
+          {% comment %}
+          <div class="top-books">
+            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
+            <h4>Name: Harry Potter</h4>
+            <p>Author: James</p>
+          </div>
+          <div class="top-books">
+            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
+            <h4>Name: Harry Potter</h4>
+            <p>Author: James</p>
+          </div>
+          {% endcomment %}
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -37,9 +37,19 @@
           <a href="/">Logout</a>
         </li>
         <li class="item">
-          <a href="/"><i class="fa-solid fa-magnifying-glass"></i></a>
+          
         </li>
       </ul>
+      <!--Search Bar-->
+      <a href="/" class='search'>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </a>
+      <!--Hamburger-->
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </nav>
     <!--Hero Section-->
     <section class="content">
@@ -52,30 +62,31 @@
         </div>
         <div class="popular-books">
           <h3 class="popular-heading">Popular Books</h3>
-          <div class="top-books">
-            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
-            <h4>Name: Harry Potter</h4>
-            <p>Author: James</p>
+          <div class="popular-book-cont">
+            <div class="top-books">
+              <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
+              <h4>Name: Harry Potter</h4>
+              <p>Author: James</p>
+            </div>
+            <div class="top-books">
+              <img src="{% static 'media/book2.jpg' %}" alt="book1" />
+              <h4>Name: Passion</h4>
+              <p>Author: Lorem Jane</p>
+            </div>
+            <div class="top-books">
+              <img src="{% static 'media/book3.jpg' %}" alt="book1" />
+              <h4>Name: Take the Risk</h4>
+              <p>Author: John wick</p>
+            </div>
+            <div class="top-books">
+              <img src="{% static 'media/book4.jpg' %}" alt="book1" />
+              <h4>Name: Internet Marketing</h4>
+              <p>Author: Julian</p>
+            </div>
           </div>
-          <div class="top-books">
-            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
-            <h4>Name: Harry Potter</h4>
-            <p>Author: James</p>
-          </div>
-          {% comment %}
-          <div class="top-books">
-            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
-            <h4>Name: Harry Potter</h4>
-            <p>Author: James</p>
-          </div>
-          <div class="top-books">
-            <img src="{% static 'media/harrypotter.jpg' %}" alt="book1" />
-            <h4>Name: Harry Potter</h4>
-            <p>Author: James</p>
-          </div>
-          {% endcomment %}
         </div>
       </div>
     </section>
   </body>
+  <script src="{% static "js/navbar.js" %}"></script>
 </html>

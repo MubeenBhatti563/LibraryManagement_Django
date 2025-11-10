@@ -16,6 +16,7 @@
 
 /* Navbar Section */
 nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,6 +30,7 @@ nav {
   );
   padding: 0.4em 1.8em;
   box-shadow: var(--box-shadow);
+  z-index: 30;
 }
 
 nav .logo img {
@@ -42,6 +44,7 @@ nav ul.navbars {
   display: flex;
   align-items: center;
   gap: 2.5em;
+  transition: var(--transition);
 }
 
 nav ul.navbars li a {
@@ -54,6 +57,10 @@ nav ul.navbars li a {
 nav ul.navbars li a:hover {
   opacity: 0.5;
   transform: translateY(-2px);
+}
+
+nav ul.navbars li div {
+  display: none;
 }
 /* Hamburger */
 nav .hamburger {
@@ -95,6 +102,12 @@ nav a.search:hover {
   transform: translateY(-2px);
 }
 
+nav .ham-search {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+
 /* Main home section */
 section.content {
   position: relative;
@@ -134,6 +147,7 @@ section.content .content-container .content-area {
   gap: 0.8em;
   align-items: center;
   color: white;
+  margin-top: 0.8em;
 }
 
 section.content .content-container .content-area h3 {
@@ -144,6 +158,7 @@ section.content .content-container .popular-books {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  margin-left: 1.8em;
 }
 
 section.content .popular-books .popular-book-cont {
@@ -177,6 +192,40 @@ section.content .top-books img:hover {
 }
 
 @media screen and (max-width: 768px) {
+  /* Navbar */
+  nav ul.navbars {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: -46%;
+    left: 0;
+    z-index: 20;
+    background: linear-gradient(
+      90deg,
+      rgba(44, 2, 116, 1),
+      rgb(44, 1, 109),
+      rgba(103, 4, 251, 1)
+    );
+    width: 100vw;
+    padding: 1em;
+    gap: 0.1em;
+  }
+
+  nav ul.navbars.active {
+    top: 6%;
+  }
+
+  nav ul.navbars li div {
+    display: block;
+    width: 95vw;
+    height: 1px;
+    background-color: #985efd;
+    margin-top: 1em;
+  }
+  nav ul.navbars li a {
+    text-align: center;
+    padding: 0.8em 0 0.5em 0;
+  }
   /* Hamburger */
   nav .hamburger {
     display: flex;

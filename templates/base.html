@@ -4,8 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{% block title %}Tour Library{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% block register %}{% endblock register %}
+    {% block login %}{% endblock login %}
     <!-- Font-Awesome -->
     <link
       rel="stylesheet"
@@ -23,20 +25,22 @@
       <ul class="navbars">
         <li class="item">
           <div></div>
-          <a href="/">Home</a>
+          <a href="{% url "home" %}">Home</a>
         </li>
         <li class="item">
           <div></div>
           <a href="/">Dashboard</a>
         </li>
+        {% if not user.is_authenticated %}
         <li class="item">
           <div></div>
-          <a href="/">Login</a>
+          <a href="{% url "login" %}">Login</a>
         </li>
         <li class="item">
           <div></div>
-          <a href="/">Register</a>
+          <a href="{% url "register" %}">Register</a>
         </li>
+        {% endif %}
         <li class="item">
           <div></div>
           <a href="/">Logout</a>
@@ -60,6 +64,7 @@
     </nav>
     <!--Hero Section-->
     <section class="content">
+      {% block content %}
       <div class="content-container">
         <div class="content-area">
           <h3 class="heading">Welcome to <em>Tour Library</em></h3>
@@ -93,6 +98,7 @@
           </div>
         </div>
       </div>
+      {% endblock content %}
     </section>
     <script src="{% static "js/navbar.js" %}"></script>
   </body>

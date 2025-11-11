@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Register|Tour Library{% endblock title %}
+{% block register %}<link rel="stylesheet" href="{% static "css/login-register.css" %}">{% endblock register %}
+
+{% block content %}
+    <form class="form" method='post'>
+    {% csrf_token %}
+      <p class="form-title">Tour Library Sign Up</p>
+      {% if form.errors %}
+        <div class="error-messages">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <p class="error">{{ field.label }}: {{ error }}</p>
+            {% endfor %}
+          {% endfor %}
+        {% for error in form.non_field_errors %}
+          <p class="error">{{ error }}</p>
+        {% endfor %}
+        </div>
+      {% endif %}
+      <div class="input-container">
+        {{ form.email }}
+        <span> </span>
+      </div>
+      <div class="input-container">
+        {{ form.username }}
+        <span> </span>
+      </div>
+      <div class="input-container">
+        {{ form.password1 }}
+      </div>
+      <div class="input-container">
+        {{ form.password2 }}
+      </div>
+      <button type="submit" class="submit">Sign up</button>
+      <p class="signup-link">
+        Already have account?
+        <a href="{% url "login" %}">Sign in</a>
+      </p>
+    </form>
+{% endblock content %}
+
+{% block errors-js %}
+<script src="{% static "js/navbar.js" %}"></script>
+{% endblock errors-js %}

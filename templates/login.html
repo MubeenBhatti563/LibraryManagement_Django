@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login|Tour Library{% endblock title %}
+{% block login %}<link rel="stylesheet" href="{% static "css/login-register.css" %}">{% endblock login %}
+
+{% block content %}
+    <form class="form" method='post'>
+      {% csrf_token %}
+      <p class="form-title">Tour Library Login In</p>
+      {% if form.errors %}
+        <div class="error-messages">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <p class="error">{{ field.label }}: {{ error }}</p>
+            {% endfor %}
+          {% endfor %}
+        {% for error in form.non_field_errors %}
+          <p class="error">{{ error }}</p>
+        {% endfor %}
+        </div>
+      {% endif %}
+      <div class="input-container">
+        {{ form.username }}
+        <span> </span>
+      </div>
+      <div class="input-container">
+        {{ form.password }}
+      </div>
+      <button type="submit" class="submit">Sign in</button>
+      <p class="signup-link">
+        No account?
+        <a href="{% url "register" %}">Sign up</a>
+      </p>
+    </form>
+{% endblock content %}

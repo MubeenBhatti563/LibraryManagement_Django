@@ -1,30 +1,34 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm, LoginForm
 
 # Create your views here.
 def home(request):
     return render(request, "base.html")
 
 def login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
+    form = LoginForm(request, data=request.POST or None)
+    if request.method == "POST":
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')
-    else:
-        form = LoginForm()
-
+            if request.headers.get("HX-Request") == "true":
+                return redirect("home")
     return render(request, "login.html", {"form": form})
 
 def register(request):
+    form = RegisterForm(request.POST or None)
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
-    else:
-        form = RegisterForm()
+            if request.headers.get("HX-Request") == "true":
+                return redirect("login")
+    context = {"form": form}
+    template = "register.html"
+    return render(request, template, context)
 
-    return render(request, "register.html", {"form": form})
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect("home")

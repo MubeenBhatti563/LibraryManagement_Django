@@ -4,7 +4,7 @@
 {% block register %}<link rel="stylesheet" href="{% static "css/login-register.css" %}">{% endblock register %}
 
 {% block content %}
-    <form class="form" method='post'>
+    <form class="form" method='post' hx-post="{% url "register" %}" hx-target=".content" hx-swap="outerHTML">
     {% csrf_token %}
       <p class="form-title">Tour Library Sign Up</p>
       {% if form.errors %}

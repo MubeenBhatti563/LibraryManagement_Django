@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block register %}{% endblock register %}
     {% block login %}{% endblock login %}
+    {% block dash_style %}{% endblock dash_style %}
     <!-- Font-Awesome -->
     <link
       rel="stylesheet"
@@ -27,10 +28,12 @@
           <div></div>
           <a href="{% url "home" %}">Home</a>
         </li>
+        {% if user.is_authenticated %}
         <li class="item">
           <div></div>
-          <a href="/">Dashboard</a>
+          <a href="{% url "dashboard" %}">Dashboard</a>
         </li>
+        {% endif %}
         {% if not user.is_authenticated %}
         <li class="item">
           <div></div>
@@ -99,6 +102,7 @@
       {% endblock content %}
     </section>
     <script src="{% static "js/navbar.js" %}"></script>
+    {% block dash_script %}{% endblock dash_script %}
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   </body>
 </html>

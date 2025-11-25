@@ -1,0 +1,58 @@
+.dash-cont {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20vw 80vw;
+}
+
+.dash-cont .side-bar-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 88vh;
+  list-style: none;
+  padding-top: 15px;
+  background: linear-gradient(
+    180deg,
+    rgba(44, 2, 116, 1),
+    rgb(44, 1, 109),
+    rgba(103, 4, 251, 1)
+  );
+}
+
+.dash-cont .side-bar-items .user {
+  color: white;
+  font-size: 1.3rem;
+  margin: 0.5em 0 1.5em 0;
+}
+
+.dash-cont .side-bar-items .profile i {
+  font-size: 6rem;
+  color: white;
+}
+
+.dash-cont .side-bar-items a {
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+}
+
+.dash-cont .side-bar-items .side-item {
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.dash-cont .side-bar-items .side-item:hover {
+  background-color: rgba(103, 4, 251, 1);
+}
+
+.dash-cont .side-bar-items .side-item.active {
+    border-left: 6px solid var(--primary-color);
+}
+
+.dash-cont .side-bar-items .side-item:nth-child(3) {
+    border-top: 1px solid black;
+}

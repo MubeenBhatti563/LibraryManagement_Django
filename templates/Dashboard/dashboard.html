@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard| Tour Library{% endblock title %}
+{% block dash_style %}<link rel="stylesheet" href="{% static "css/dashboard.css" %}">{% endblock dash_style %}
+
+{% block content %}
+<div class="dash-cont">
+    <div class="side-bar-items">
+        <div class="profile">
+            <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <div class="user">{{ user }}</div>
+        <a 
+            href="{% url 'student_info' %}"
+            hx-get="{% url 'student_info' %}"
+            hx-push-url="{% url 'student_info' %}"
+            hx-target=".dash-main-content"
+            hx-swap="innerHTML"
+            class="side-item active"
+        >
+            Student Information
+        </a>
+        <a 
+            href="{% url 'statistics' %}"
+            hx-get="{% url 'statistics' %}"
+            hx-push-url="{% url 'statistics' %}"
+            hx-target=".dash-main-content"
+            hx-swap="innerHTML"
+            class="side-item"
+        >
+            Statistics
+        </a>
+        <a 
+            href="{% url 'borrow_history' %}"
+            hx-get="{% url 'borrow_history' %}"
+            hx-push-url="{% url 'borrow_history' %}"
+            hx-target=".dash-main-content"
+            hx-swap="innerHTML"
+            class="side-item"
+        >
+            Borrow History
+        </a>
+        <a 
+            href="{% url 'return_book' %}"
+            hx-get="{% url 'return_book' %}"
+            hx-push-url="{% url 'return_book' %}"
+            hx-target=".dash-main-content"
+            hx-swap="innerHTML"
+            class="side-item"
+        >
+            Book Return
+        </a>
+        <a 
+            href="{% url 'available_books' %}"
+            hx-get="{% url 'available_books' %}"
+            hx-push-url="{% url 'available_books' %}"
+            hx-target=".dash-main-content"
+            hx-swap="innerHTML"
+            class="side-item"
+        >
+            Available Books
+        </a>
+    </div>
+    <div class="dash-main-content"></div>
+</div>
+{% endblock content %}
+{% block dash_script %}<script src="{% static "js/dashboard.js" %}"></script>{% endblock dash_script %}

@@ -17,3 +17,13 @@ document.body.addEventListener('htmx:afterSwap', setActiveFromLocation);
 
 // Update on back/forward
 window.addEventListener('popstate', setActiveFromLocation);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const fa_bars = document.querySelector(".fa-bars");
+    const sideBar = document.querySelector(".side-bar-items");
+
+    fa_bars.addEventListener("click", () => {
+        fa_bars.classList.toggle("active");
+        sideBar.classList.toggle("active");
+    });
+});

@@ -9,19 +9,12 @@ from .forms import RegisterForm, LoginForm
 def home(request):
     return render(request, "base.html")
 
-from django.http import HttpResponse
-
 def login_view(request):
     form = LoginForm(request, data=request.POST or None)
     if request.method == "POST":
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-
-            if request.headers.get("HX-Request") == "true":
-                response = HttpResponse()
-                response['HX-Redirect'] = '/home/'  # or use reverse('dashboard')
-                return response
 
             return redirect("home")  # normal full-page redirect
     return render(request, "login.html", {"form": form})
@@ -31,13 +24,7 @@ def register(request):
     if request.method == "POST" and form.is_valid():
         user = form.save()  # create user
 
-        if request.headers.get("HX-Request") == "true":
-            response = HttpResponse()
-            response['HX-Redirect'] = reverse("login")
-            return response
-
         return redirect("login")
-
     return render(request, "register.html", {"form": form})
 
 @login_required

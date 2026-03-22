@@ -191,14 +191,20 @@ section.content .top-books img:hover {
   transform: scale(1.1);
 }
 
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  section.content {
+    height: 90.8vh;
+  }
+}
+
 @media screen and (max-width: 768px) {
   /* Navbar */
   nav ul.navbars {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: -46%;
     left: 0;
+    top: -60%;
     z-index: 20;
     background: linear-gradient(
       90deg,
@@ -209,10 +215,12 @@ section.content .top-books img:hover {
     width: 100vw;
     padding: 1em;
     gap: 0.1em;
+    height: 262px;
+    padding-top: 4.8em;
   }
 
   nav ul.navbars.active {
-    top: 6%;
+    top: -6%;
   }
 
   nav ul.navbars li div {
@@ -241,5 +249,15 @@ section.content .top-books img:hover {
   section.content .popular-books .popular-book-cont {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.4em;
+  }
+  section.content {
+    height: 92.8vh;
+  }
+}
+
+/* Dashboard section => .content at 448px */
+@media screen and (max-width: 448px) {
+  section.content {
+    height: 89.8vh;
   }
 }

@@ -60,15 +60,40 @@
 
 .dash-cont .dash-main-content {
   padding: 0.4em;
+  padding-top: 1.5em;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: #1d0147;
+}
+
+.dash-cont .dash-inner-default {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  gap: 1.5rem;
+}
+
+.dash-cont .dash-inner-default p {
+  width: 70%;
+  text-align: center;
+  line-height: 1.8rem;
 }
 
 .dash-cont .fa-bars {
   display: none;
-  position: absolute;
-  left: 0.4em;
+  position: fixed;
+  left: 0.5em;
   top: 0.4em;
   cursor: pointer;
   color: #fff;
+}
+
+@media screen and (min-width: 769px) {
+  .dash-cont .side-bar-items {
+    height: 100vh;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -76,6 +101,11 @@
     width: 40vw;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    height: 100vh;
+  }
+
+  .dash-cont {
+    grid-template-columns: 0 100vw;
   }
 
   .dash-cont .side-bar-items.active {
@@ -83,13 +113,30 @@
   }
 
   .dash-cont .fa-bars.active {
-    left: 0.4em;
+    left: 101%;
     top: 0.4em;
   }
 
   .dash-cont .fa-bars {
     display: block;
-    left: 19.5em;
+    left: 101%;
     top: 0.4em;
+  }
+
+  .dash-cont .dash-main-content {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 448px) {
+  .dash-cont .side-bar-items {
+    width: 70vw;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    height: 100vh;
+  }
+
+  .dash-cont .dash-main-content {
+    font-size: 0.6rem;
   }
 }

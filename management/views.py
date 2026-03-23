@@ -47,5 +47,8 @@ def borrow_history(request):
 def return_book(request):
     return render(request, "Dashboard/return_book.html")
 
+def borrow_book(request):
+    return render(request, "Dashboard/borrow_book.html")
+
 def available_books(request):
     return render(request, "Dashboard/available_books.html")

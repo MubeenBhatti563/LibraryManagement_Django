@@ -7,6 +7,15 @@
   font-family: "Roboto", sans-serif;
 }
 
+::selection {
+  background-color: #8b3dff; /* The background color of the selected text */
+}
+
+/* For Firefox compatibility */
+::-moz-selection {
+  background-color: #8b3dff;
+}
+
 :root {
   --primary-color: #8b3dff;
   --secondary-color: #5400d1;

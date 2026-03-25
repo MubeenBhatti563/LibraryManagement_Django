@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Register|Tour Library{% endblock title %}
+{% block title %}Register | Tour Library{% endblock title %}
 {% block register %}<link rel="stylesheet" href="{% static "css/login-register.css" %}">{% endblock register %}
 
 {% block content %}
-    <form class="form" method='post' hx-post="{% url "register" %}" hx-target=".content" hx-swap="outerHTML">
+    <form class="form" method='post'>
     {% csrf_token %}
       <p class="form-title">Tour Library Sign Up</p>
       {% if form.errors %}

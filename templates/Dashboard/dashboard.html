@@ -53,6 +53,16 @@
             Book Return
         </a>
         <a 
+            href="{% url 'borrow_book' %}"
+            hx-get="{% url 'borrow_book' %}"
+            hx-push-url="{% url 'borrow_book' %}"
+            hx-target=".dash-main-content"
+            hx-swap="innerHTML"
+            class="side-item"
+        >
+            Borrow Book
+        </a>
+        <a 
             href="{% url 'available_books' %}"
             hx-get="{% url 'available_books' %}"
             hx-push-url="{% url 'available_books' %}"

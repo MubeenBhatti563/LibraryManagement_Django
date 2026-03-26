@@ -1,0 +1,15 @@
+<div class="student-info">
+  <h3 class="info-heading">Student Information</h3>
+  <ul class="student-lists">
+    {% for data in context %}
+    <li class="lists">
+      {% if data.profile_img.url %}
+      <img src="{{ data.profile_img.url }}" class="student_img" alt="{{user.username}}" width="100px" />
+      {% else %}
+      <i class="fa-solid fa-circle-user" style="font-size: 80px"></i>
+      {% endif %}
+      <strong>Username:</strong> {{ data.user.username|capfirst }}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -75,6 +75,7 @@
         <i class="fa-solid fa-bars"></i>
     </aside>
     <div class="dash-main-content">
+        {% block dash_content %}
         <div class="dash-inner-default">
             <h1 class="dashboard-main-heading">Hello <i>{{user|capfirst}}</i>, Welcome to Dashboard</h1>
             <p class="dashboard-para">
@@ -83,6 +84,7 @@
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur totam rerum voluptate facilis eius. Veniam impedit quisquam dolore explicabo mollitia!. 
             </p>
         </div>
+        {% endblock dash_content %}
     </div>
 </div>
 {% endblock content %}

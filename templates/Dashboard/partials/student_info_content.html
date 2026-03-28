@@ -1,15 +1,23 @@
 <div class="student-info">
-  <h3 class="info-heading">Student Information</h3>
+  <h2 class="info-heading">Student Information</h2>
   <ul class="student-lists">
-    {% for data in context %}
+    {% for student in students %}
     <li class="lists">
-      {% if data.profile_img.url %}
-      <img src="{{ data.profile_img.url }}" class="student_img" alt="{{user.username}}" width="100px" />
+      {% if student.profile_img %}
+        <img src="{{ student.profile_img.url }}" class="student_img" alt="{{ student.user.username }}" width="100px" />
       {% else %}
-      <i class="fa-solid fa-circle-user" style="font-size: 80px"></i>
+        <i class="fa-solid fa-circle-user" style="font-size: 80px"></i>
       {% endif %}
-      <strong>Username:</strong> {{ data.user.username|capfirst }}
+      
+      <h3 class="user_name">Username: {{ student.user.username|capfirst }}</h3>
+      <h4 class="user_enrollment_no">ID: {{ student.enrollment_no }}</h4>
+      
+      <span class="user_owned_books">
+        Books Owned: <strong>{{ student.students.count }}</strong>
+      </span>
     </li>
+    {% empty %}
+      <p>No students found in the system.</p>
     {% endfor %}
   </ul>
 </div>

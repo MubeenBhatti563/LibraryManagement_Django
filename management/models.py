@@ -37,8 +37,8 @@ class Book(models.Model):
         return self.title
     
 class IssuedBook(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='students')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='books')
     issue_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateField(null=True, blank=True)
     actual_return_date = models.DateField(null=True, blank=True)

@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm
-from .models import Student
+from .models import Student, IssuedBook, Book
 
 # Create your views here.
 def home(request):
@@ -37,10 +37,14 @@ def dashboard_view(request):
     return render(request, "Dashboard/dashboard.html")
 
 def student_info(request):
-    student_data = Student.objects.all()
+    students = Student.objects.all().select_related('user')
+    context = {
+        "students": students
+    }
+
     if request.headers.get('HX-Request'):
-        return render(request, 'Dashboard/partials/student_info_content.html', {"context": student_data})
-    return render(request, 'Dashboard/student_info.html', {"context": student_data})
+        return render(request, 'Dashboard/partials/student_info_content.html', context)
+    return render(request, 'Dashboard/student_info.html', context)
 
 def statistics(request):
     return render(request, "Dashboard/statistics.html")

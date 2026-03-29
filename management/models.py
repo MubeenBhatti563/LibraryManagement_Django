@@ -23,6 +23,11 @@ class Student(models.Model):
     profile_img = models.ImageField(upload_to=get_upload_path, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def total_fines(self):
+        total_fines = self.issued_books.filter(return_status=False)
+        return sum(book.calculate_fine for book in total_fines)
+
     def __str__(self):
         return self.user.username
     
@@ -37,8 +42,8 @@ class Book(models.Model):
         return self.title
     
 class IssuedBook(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='students')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='books')
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='issued_books')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='issued_instances')
     issue_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateField(null=True, blank=True)
     actual_return_date = models.DateField(null=True, blank=True)

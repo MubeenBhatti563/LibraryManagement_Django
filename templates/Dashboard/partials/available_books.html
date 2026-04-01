@@ -1,0 +1,18 @@
+<div class="available_books">
+    <h2 class="avail_heading">Available Books</h2>
+    <div class="book_container">
+        {% for book in books %}
+        <div class="book">
+            <div class="image-section">
+                <img src="{{ book.book_pic.url }}" alt="{{ book.title }}">
+            </div>
+            <div class="info">
+                <h3 class="title">Name: {{ book.title }}</h3>
+                <h3 class="author">Author: {{ book.author }}</h3>
+            </div>
+        </div>
+        {% empty %}
+        <p class="not-available">Sorry books are not available at this time!</p>
+        {% endfor %}
+    </div>
+</div>

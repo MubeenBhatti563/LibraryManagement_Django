@@ -34,6 +34,7 @@ class Student(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=200) 
     isbn = models.CharField(max_length=13, unique=True)
+    author = models.CharField(max_length=50)
     total_copies = models.PositiveIntegerField(default=1)
     book_pic = models.ImageField(upload_to=get_upload_path, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)

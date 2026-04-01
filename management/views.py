@@ -56,7 +56,16 @@ def return_book(request):
     return render(request, "Dashboard/return_book.html")
 
 def borrow_book(request):
+    if request.headers.get('HX-Request'):
+        return render(request, 'Dashboard/partials/borrow_book.html')
     return render(request, "Dashboard/borrow_book.html")
 
 def available_books(request):
-    return render(request, "Dashboard/available_books.html")
+    books = Book.objects.all()
+    context = {
+        "books": books
+    }
+    
+    if request.headers.get('HX-Request'):
+        return render(request, "Dashboard/partials/available_books.html", context)
+    return render(request, "Dashboard/available_books.html", context)

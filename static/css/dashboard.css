@@ -95,7 +95,7 @@
 }
 
 .dash-cont .dash-main-content .student-info .info-heading {
-  margin-bottom: 0.6em;
+  margin: 0.4em 0 0.6em 0;
 }
 
 .dash-cont .dash-main-content .student-info .student-lists {
@@ -148,6 +148,66 @@
   border-radius: 50%;
 }
 
+/* Style for Availabe books section */
+.dash-cont .dash-main-content .available_books {
+  color: #fff;
+}
+
+.dash-cont .dash-main-content .available_books .avail_heading {
+  margin: 0.4em 0 0.6em 0;
+}
+
+.dash-cont .dash-main-content .available_books .book_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  padding: 0.4em 0.7em;
+  gap: 1em;
+  overflow: auto;
+  max-height: 79vh;
+}
+
+.dash-cont .dash-main-content .available_books .book_container .book {
+  border: 1px solid #fff;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding-bottom: 0.5em;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  background-color: var(--secondary-color);
+}
+
+.dash-cont .dash-main-content .available_books .book_container .book:hover {
+  transform: translateY(-2%);
+}
+
+.dash-cont
+  .dash-main-content
+  .available_books
+  .book_container
+  .book
+  .image-section {
+  width: 100%;
+}
+
+.dash-cont .dash-main-content .available_books .book_container .book img {
+  width: 100%;
+  height: 160px;
+}
+
+.dash-cont .dash-main-content .available_books .book_container .book .info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 769px) {
   .dash-cont .side-bar-items {
     height: 100vh;
@@ -189,6 +249,10 @@
   .dash-cont .dash-main-content .student-info .student-lists #list {
     font-size: 0.9rem;
   }
+
+  .dash-cont .dash-main-content .available_books .book_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 448px) {
@@ -205,5 +269,18 @@
 
   .dash-cont .dash-main-content .student-info .student-lists #list {
     font-size: 0.7rem;
+  }
+
+  .dash-cont .dash-main-content .available_books .book_container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5em;
+  }
+
+  .dash-cont .dash-main-content .available_books .book_container .book {
+    height: 350px;
+  }
+
+  .dash-cont .dash-main-content .available_books .book_container .book img {
+    height: 250px;
   }
 }

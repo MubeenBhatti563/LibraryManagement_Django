@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, BorrowBookForm
 from .models import Student, IssuedBook, Book
 
 # Create your views here.
@@ -56,12 +56,25 @@ def return_book(request):
     return render(request, "Dashboard/return_book.html")
 
 def borrow_book(request):
+    if request.method == 'POST':
+        form = BorrowBookForm(request.POST)
+        if form.is_valid():
+            issued_book = form.save()
+            
+            book = issued_book.book
+            book.total_copies -= 1
+            book.save()
+
+            return redirect('dashboard')
+    else:
+        form = BorrowBookForm()
+
     if request.headers.get('HX-Request'):
-        return render(request, 'Dashboard/partials/borrow_book.html')
-    return render(request, "Dashboard/borrow_book.html")
+        return render(request, 'Dashboard/partials/borrow_book.html', {'form': form})
+    return render(request, "Dashboard/borrow_book.html", {'form': form})
 
 def available_books(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(total_copies__gt=0)
     context = {
         "books": books
     }

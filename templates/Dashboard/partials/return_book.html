@@ -1,0 +1,25 @@
+<div class="return_books">
+    <h2 class="return_heading">Borrow a Book</h2>
+    
+    <form method="post" class="return_book">
+        {% csrf_token %}
+        <h3 class="form_info">Fill the Information</h3>
+        {% if form.non_field_errors %}
+            <div class="error-messages active-error">
+                {{ form.non_field_errors.0 }}
+            </div>
+        {% endif %}
+
+        <div class="info">
+            <label for="id_student">Student</label>
+            {{ form.student }}
+        </div>
+    
+        <div class="info">
+            <label for="id_book">Book</label>
+            {{ form.book }}
+        </div>
+
+        <button type="submit">Confirm Issue</button>
+    </form>
+</div>

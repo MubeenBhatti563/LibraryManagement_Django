@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import IssuedBook, Book
+from .models import IssuedBook, Book, Student
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
@@ -69,4 +69,29 @@ class BorrowBookForm(forms.ModelForm):
             if book.total_copies < 1:
                 raise ValidationError(f"Error: {book.title} is currently out of stock")
       
+        return cleaned_data
+    
+class ReturnBookForm(forms.Form):
+    student = forms.ModelChoiceField(
+        # Use 'issued_books' because that is your related_name for Student
+        queryset=Student.objects.filter(issued_books__return_status=False).distinct(),
+        widget=forms.Select(attrs={'class': 'return_input'})
+    )
+    
+    book = forms.ModelChoiceField(
+        # Use 'issued_instances' because that is your related_name for Book
+        queryset=Book.objects.filter(issued_instances__return_status=False).distinct(),
+        widget=forms.Select(attrs={'class': 'return_input'})
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        student = cleaned_data.get('student')
+        book = cleaned_data.get('book')
+
+        issue = IssuedBook.objects.filter(student=student, book=book, return_status=False).first()
+        if not issue:
+            raise forms.ValidationError("No active record found for this student and book!")
+        
+        cleaned_data['issue_record'] = issue
         return cleaned_data

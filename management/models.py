@@ -28,6 +28,10 @@ class Student(models.Model):
         total_fines = self.issued_books.filter(return_status=False)
         return sum(book.calculate_fine for book in total_fines)
 
+    @property
+    def active_book_count(self):
+        return self.issued_books.filter(return_status=False)
+
     def __str__(self):
         return self.user.username
     

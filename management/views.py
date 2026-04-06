@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
+from django.db import transaction
+from django.utils import timezone
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, BorrowBookForm
+from .forms import RegisterForm, LoginForm, BorrowBookForm, ReturnBookForm
 from .models import Student, IssuedBook, Book
 
 # Create your views here.
@@ -33,9 +35,11 @@ def logout_view(request):
     logout(request)
     return redirect("home")
 
+@login_required
 def dashboard_view(request):
     return render(request, "Dashboard/dashboard.html")
 
+@login_required
 def student_info(request):
     students = Student.objects.all().select_related('user')
     context = {
@@ -46,15 +50,41 @@ def student_info(request):
         return render(request, 'Dashboard/partials/student_info_content.html', context)
     return render(request, 'Dashboard/student_info.html', context)
 
+@login_required
 def statistics(request):
     return render(request, "Dashboard/statistics.html")
 
+@login_required
 def borrow_history(request):
     return render(request, "Dashboard/borrow_history.html")
 
+@login_required
 def return_book(request):
-    return render(request, "Dashboard/return_book.html")
+    if request.method == 'POST':
+        form = ReturnBookForm(request.POST)
+        if form.is_valid():
+            with transaction.atomic():
+                issue_record = form.cleaned_data['issue_record']
 
+                # Updated the record
+                issue_record.return_status = True
+                issue_record.actual_return_date = timezone.now().date()
+                issue_record.save()
+
+                # Put book back to shell
+                book = issue_record.book
+                book.total_copies += 1
+                book.save()
+
+                return redirect('dashboard')
+    else:
+        form = ReturnBookForm()
+
+    if request.headers.get('HX-Request'):
+        return render(request, 'Dashboard/partials/return_book.html', {"form": form})
+    return render(request, "Dashboard/return_book.html", {"form": form})
+
+@login_required
 def borrow_book(request):
     if request.method == 'POST':
         form = BorrowBookForm(request.POST)
@@ -73,6 +103,7 @@ def borrow_book(request):
         return render(request, 'Dashboard/partials/borrow_book.html', {'form': form})
     return render(request, "Dashboard/borrow_book.html", {'form': form})
 
+@login_required
 def available_books(request):
     books = Book.objects.filter(total_copies__gt=0)
     context = {

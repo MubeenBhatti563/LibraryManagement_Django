@@ -247,7 +247,8 @@
 }
 
 /* Borrow a Book styles */
-.dash-cont .dash-main-content .borrow_books {
+.dash-cont .dash-main-content .borrow_books,
+.dash-cont .dash-main-content .return_books {
   padding: 0 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -256,16 +257,18 @@
   width: 100%;
 }
 
-.dash-cont .dash-main-content .borrow_heading {
+.dash-cont .dash-main-content .borrow_heading,
+.dash-cont .dash-main-content .return_heading {
   margin: 0.4em 0 0.6em 0;
   font-size: 2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* The Form Card */
-.dash-cont .dash-main-content .borrow_book {
-  background: rgba(255, 255, 255, 0.05); /* Subtle transparent white */
-  backdrop-filter: blur(10px); /* Glass effect */
+.dash-cont .dash-main-content .borrow_book,
+.dash-cont .dash-main-content .return_book {
+  background: rgb(40, 0, 100); /* Subtle transparent white */
+  backdrop-filter: blur(20px); /* Glass effect */
   padding: 2.5rem;
   border-radius: 15px;
   width: 100%;
@@ -281,7 +284,7 @@
   text-align: center;
   font-weight: 300;
   letter-spacing: 1px;
-  color: var(--primary-color);
+  color: #893aff;
   margin-bottom: 0.5rem;
 }
 
@@ -299,7 +302,8 @@
 }
 
 /* Input Fields */
-.dash-cont .dash-main-content .borrow_input {
+.dash-cont .dash-main-content .borrow_input,
+.dash-cont .dash-main-content .return_input {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px 15px;
@@ -310,14 +314,16 @@
   transition: var(--transition);
 }
 
-.dash-cont .dash-main-content .borrow_input:focus {
+.dash-cont .dash-main-content .borrow_input:focus,
+.dash-cont .dash-main-content .return_input:focus {
   border-color: var(--primary-color);
   background: rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 8px rgba(139, 61, 255, 0.4);
 }
 
 /* Submit Button */
-.dash-cont .dash-main-content .borrow_book button[type="submit"] {
+.dash-cont .dash-main-content .borrow_book button[type="submit"],
+.dash-cont .dash-main-content .return_book button[type="submit"] {
   margin-top: 1rem;
   background: var(--primary-color);
   color: white;
@@ -331,7 +337,8 @@
   box-shadow: 0 4px 15px rgba(139, 61, 255, 0.3);
 }
 
-.dash-cont .dash-main-content .borrow_book button[type="submit"]:hover {
+.dash-cont .dash-main-content .borrow_book button[type="submit"]:hover,
+.dash-cont .dash-main-content .return_book button[type="submit"]:hover {
   background: var(--secondary-color);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(139, 61, 255, 0.5);
@@ -342,6 +349,7 @@
 }
 
 /* Target the Select box specifically */
+.dash-cont .dash-main-content select.return_input,
 .dash-cont .dash-main-content select.borrow_input {
   appearance: none; /* Removes the default browser arrow */
   -webkit-appearance: none;
@@ -358,19 +366,22 @@
 }
 
 /* Styling the dropdown list (The options) */
-.dash-cont .dash-main-content select.borrow_input option {
+.dash-cont .dash-main-content select.borrow_input option,
+.dash-cont .dash-main-content select.return_input option {
   background-color: #1d0147; /* Matches your dashboard background */
   color: #fff;
   padding: 10px;
 }
 
 /* Hover state for the select box */
-.dash-cont .dash-main-content select.borrow_input:hover {
+.dash-cont .dash-main-content select.borrow_input:hover,
+.dash-cont .dash-main-content select.return_input:hover {
   border-color: var(--primary-color);
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Active/Focus state */
+.dash-cont .dash-main-content select.return_input:focus,
 .dash-cont .dash-main-content select.borrow_input:focus {
   outline: none;
   border-color: var(--primary-color);

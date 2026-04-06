@@ -20,7 +20,7 @@
       <h4 class="user_enrollment_no">ID: {{ student.enrollment_no }}</h4>
       
       <span class="user_owned_books">
-        Books Owned: <strong>{{ student.issued_books.count }}</strong>
+        Books Owned: <strong>{{ student.active_book_count.count }}</strong>
       </span>
       <h3>{{ student.total_fines }}</h3>
     </li>
